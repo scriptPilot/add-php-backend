@@ -1,20 +1,22 @@
 # Add PHP Backend
 
-Adds MySQL and PHP CRUD API to your local development environment.
+Add PHP, Composer, MySQL and PHP CRUD API to your local development environment.
 
 ## Installation
 
-Create a new app project:
+1. Install Docker and Node.js
 
-```bash
-npm create vite@latest
-```
+2. Create a new app project:
 
-Add a PHP backend:
+    ```bash
+    npm create vite@latest
+    ```
 
-```bash
-npx add-php-backend
-```
+3. Add a PHP backend:
+
+    ```bash
+    npx add-php-backend
+    ```
 
 ## Usage
 
