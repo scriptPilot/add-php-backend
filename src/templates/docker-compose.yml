@@ -22,7 +22,9 @@ services:
       - update
 
   mysql:
-    build: ./docker/mysql
+    build:
+      context: ./
+      dockerfile: ./docker/mysql/Dockerfile
     container_name: mysql
     restart: always
 

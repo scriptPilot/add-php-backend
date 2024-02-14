@@ -9,6 +9,10 @@ require('vendor/autoload.php');
 
 // Credentials
 @include('credentials.php');
+@define('MYSQL_HOST', 'mysql');
+@define('MYSQL_DATABASE', 'development');
+@define('MYSQL_USERNAME', 'root');
+@define('MYSQL_PASSWORD', 'root');
 
 // Configuration
 $config = new Config([
@@ -17,10 +21,10 @@ $config = new Config([
     'debug' => MYSQL_DATABASE === 'development',
 
     // Database
-    'address' => MYSQL_HOST ?? 'mysql',
-    'database' => MYSQL_DATABASE ?? 'development',
-    'username' => MYSQL_USERNAME ?? 'root',
-    'password' => MYSQL_PASSWORD ?? 'root'
+    'address' => MYSQL_HOST,
+    'database' => MYSQL_DATABASE,
+    'username' => MYSQL_USERNAME,
+    'password' => MYSQL_PASSWORD
     
 ]);
 

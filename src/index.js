@@ -42,7 +42,7 @@ const nextPackageFileJson = {
   ...packageFileJson,
   scripts: {
     ...packageFileJson.scripts,
-    backend: 'docker compose up -d'
+    backend: 'docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q) && docker volume rm $(docker volume ls -q) && docker compose up -d --build',    
   }
 }
 fs.writeJsonSync(packageFile, nextPackageFileJson, { spaces: 2 })
