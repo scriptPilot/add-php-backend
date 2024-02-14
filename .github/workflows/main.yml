@@ -37,7 +37,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: build
+    needs: check-conditions
     steps:
   
       - name: Create a new version tag
