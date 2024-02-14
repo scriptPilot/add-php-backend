@@ -27,14 +27,29 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 
 ## How it works
 
-## Support development
+- ✅ no dependency will be installed
+- ✅ you have full control of all source files
 
-For all:
+- running "npx add-php-backend" will download the package in a cache folder
+- the package main script will **create some files** to your project folder if not exist:
+  - `docker/` folder with Dockerfiles
+  - `public/api.php` initialization of the PHP CRUD API
+  - `public/credentials.template.php` to be renamed to `credentials.php` for production
+  - `composer.json` to configure Composer
+  - `docker-composer.yml` to configure the container setup
+  - `schema.sql` contains the database schema
+  - `testdata.sql` contains test data only for development
+- the package main script will **modify some files** in your project folder:
+  - add a `backend` script to the `package.json` file
+  - add a proxy server config for PHP files to the Vite config file 
+  - add `vendor/` and `credentials.php` to the `.gitignore` file
 
-- Report bugs in the [issues list](https://github.com/scriptPilot/add-php-backend/issues)
+## Support
 
-For maintainer:
+Report bugs in the [issues list](https://github.com/scriptPilot/add-php-backend/issues).
 
-- Commit changes with an issue (closure) reference
-- Run npm version patch | minor | major and push changes
-- Let the workflow manage the release to GitHub and NPM
+## Maintainer
+
+1. Commit changes with an issue (closure) reference
+2. Run npm version patch | minor | major and push changes
+3. Let the workflow manage the release to GitHub and NPM
