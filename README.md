@@ -1,6 +1,6 @@
 # Add PHP Backend
 
-Add MySQL and PHP CRUD API to your local development environment.
+Add PHP, Composer, MySQL and PHP CRUD API to your local development environment.
 
 ## Installation
 
