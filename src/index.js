@@ -16,25 +16,30 @@ const publicFolder = path.resolve(appFolder, 'public')
 
 // Define files
 const packageFile = path.resolve(appFolder, 'package.json')
-const viteConfigFile = path.resolve(appFolder, 'vite.config.js')
+const viteConfigFile = isDevMode ? 'vite.config.js' : fs.readdirSync(appFolder).filter(f => f.startsWith('vite.config.'))[0]
+const gitIgnoreFile = path.resolve(appFolder, '.gitignore')
+const gitIgnoreTemplateFile = path.resolve(scriptFolder, 'templates/.gitignore')
 
-// Create folder and files in dev mode
-if (isDevMode) {
-  fs.ensureDirSync(publicFolder)
-  if (!fs.existsSync(packageFile)) fs.writeJsonSync(packageFile, {})
-  if (!fs.existsSync(viteConfigFile)) fs.writeFileSync(viteConfigFile, 'export default {}')
+// Check folders and files
+if (!isDevMode) {
+  if (!fs.existsSync(publicFolder)) throw new Error(`❌ Folder not found "${publicFolder}"`)
+  if (!fs.existsSync(packageFile)) throw new Error(`❌ File not found "${packageFile}"`)
+  if (!viteConfigFile) throw new Error(`❌ File not found "vite.config.*"`)
 }
-
-// Check requirements
-if (!fs.existsSync(publicFolder)) throw new Error(`❌ Folder not found "${publicFolder}"`)
-if (!fs.existsSync(packageFile)) throw new Error(`❌ File not found "${packageFile}"`)
-if (!fs.existsSync(viteConfigFile)) throw new Error(`❌ File not found "${viteConfigFile}"`)
 
 // Copy template structure
 shell.exec(`cp -Rn "${templateFolder}/" "${appFolder}/"`)
 
 // Add vendor folder and credentials.php to the .gitignore file
-// TODO
+const gitIgnoreFileStr = fs.readFileSync(gitIgnoreFile, { encoding: 'utf8' })
+const gitIgnoreFileLines = gitIgnoreFileStr.split('\n')
+const gitIgnoreTemplateFileStr =  fs.readFileSync(gitIgnoreTemplateFile, { encoding: 'utf8' })
+const gitIgnoreTemplateFileLines = gitIgnoreTemplateFileStr.split('\n')
+gitIgnoreTemplateFileLines.forEach(term => {
+  if (!gitIgnoreFileLines.includes(term)) gitIgnoreFileLines.push(term)
+})
+const nextGitIgnoreFileStr = gitIgnoreFileLines.join('\n')
+fs.writeFileSync(gitIgnoreFile, nextGitIgnoreFileStr)
 
 // Add backend script to the package.json file
 const packageFileJson = fs.readJsonSync(packageFile)
