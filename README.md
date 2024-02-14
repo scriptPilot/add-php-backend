@@ -1,10 +1,10 @@
 # Add PHP Backend
 
-Add PHP, Composer, MySQL, phpMyAdmin and PHP CRUD API to your local development environment.
+Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](https://mariadb.org/), [phpMyAdmin](https://www.phpmyadmin.net/) and [PHP CRUD API](https://github.com/mevdschee/php-crud-api) to your local development environment.
 
 ## Installation
 
-1. Install Docker and Node.js
+1. Install [Docker](https://www.docker.com/) and [Node.js](https://nodejs.org/)
 
 2. Create a new app project:
 
