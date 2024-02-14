@@ -31,7 +31,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 - you have **full control** of all source files for fine tuning
 - running `npx add-php-backend` will download the package in a cache folder
 - the package main script will **create some files** in the project folder if not exist:
-  - `docker/` folder with Dockerfiles
+  - `docker/` folder with the Dockerfiles
   - `public/api.php` initialization of the PHP CRUD API
   - `public/credentials.template.php` to be renamed to `credentials.php` for production
   - `composer.json` to configure Composer
