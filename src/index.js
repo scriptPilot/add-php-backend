@@ -20,7 +20,6 @@ const viteConfigFile = isDevMode
   ? path.resolve(appFolder, 'vite.config.js')
   : fs.readdirSync(appFolder).filter(f => f.startsWith('vite.config.')).map(f => path.resolve(appFolder, f))[0]
 const gitIgnoreFile = path.resolve(appFolder, '.gitignore')
-const gitIgnoreTemplateFile = path.resolve(scriptFolder, 'templates/.gitignore')
 
 // Check folders and files
 if (!isDevMode) {
@@ -33,10 +32,9 @@ if (!isDevMode) {
 shell.exec(`cp -Rn "${templateFolder}/" "${appFolder}/"`)
 
 // Add vendor folder and credentials.php to the .gitignore file
-const gitIgnoreFileStr = fs.readFileSync(gitIgnoreFile, { encoding: 'utf8' })
+const gitIgnoreFileStr = fs.existsSync(gitIgnoreFile) ? fs.readFileSync(gitIgnoreFile, { encoding: 'utf8' }) : ''  
 const gitIgnoreFileLines = gitIgnoreFileStr.split('\n')
-const gitIgnoreTemplateFileStr =  fs.readFileSync(gitIgnoreTemplateFile, { encoding: 'utf8' })
-const gitIgnoreTemplateFileLines = gitIgnoreTemplateFileStr.split('\n')
+const gitIgnoreTemplateFileLines = ['vendor/', 'credentials.php']
 gitIgnoreTemplateFileLines.forEach(term => {
   if (!gitIgnoreFileLines.includes(term)) gitIgnoreFileLines.push(term)
 })
