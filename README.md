@@ -1,10 +1,10 @@
 # Add PHP Backend
 
-Add PHP, Composer, MySQL, phpMyAdmin and PHP CRUD API to your local development environment.
+Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](https://mariadb.org/), [phpMyAdmin](https://www.phpmyadmin.net/) and [PHP CRUD API](https://github.com/mevdschee/php-crud-api) to your local development environment.
 
 ## Installation
 
-1. Install Docker and Node.js
+1. Install [Docker](https://www.docker.com/) and [Node.js](https://nodejs.org/)
 
 2. Create a new app project:
 
@@ -25,8 +25,16 @@ Add PHP, Composer, MySQL, phpMyAdmin and PHP CRUD API to your local development 
 - Open phpMyAdmin at http://localhost:8080
 - Use the PHP CRUD API in frontend with `/api.php`
 
-## Development (this repository)
+## How it works
+
+## Support development
+
+For all:
+
+- Report bugs in the [issues list](https://github.com/scriptPilot/add-php-backend/issues)
+
+For maintainer:
 
 - Commit changes with an issue (closure) reference
-- Run `npm version patch | minor | major` and push changes
+- Run npm version patch | minor | major and push changes
 - Let the workflow manage the release to GitHub and NPM
