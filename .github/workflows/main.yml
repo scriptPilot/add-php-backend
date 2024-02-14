@@ -39,6 +39,9 @@ jobs:
     permissions: write-all
     needs: check-conditions
     steps:
+
+      - name: Checkout the repository
+        uses: actions/checkout@v4
   
       - name: Create a new version tag
         uses: Klemensas/action-autotag@stable
