@@ -16,20 +16,26 @@ const publicFolder = path.resolve(appFolder, 'public')
 
 // Define files
 const packageFile = path.resolve(appFolder, 'package.json')
-const viteConfigFile = isDevMode
-  ? path.resolve(appFolder, 'vite.config.js')
-  : fs.readdirSync(appFolder).filter(f => f.startsWith('vite.config.')).map(f => path.resolve(appFolder, f))[0]
 const gitIgnoreFile = path.resolve(appFolder, '.gitignore')
-
-// Check folders and files
-if (!isDevMode) {
-  if (!fs.existsSync(publicFolder)) throw new Error(`❌ Folder not found "${publicFolder}"`)
-  if (!fs.existsSync(packageFile)) throw new Error(`❌ File not found "${packageFile}"`)
-  if (!viteConfigFile) throw new Error(`❌ File not found "vite.config.*"`)
-}
+let viteConfigFile = null
 
 // Copy template structure
 shell.exec(`cp -Rn "${templateFolder}/" "${appFolder}/"`)
+
+// Create package.json file if not exists
+if (!fs.existsSync(packageFile)) fs.writeFileSync(packageFile, '{}')
+
+// Search for vite config file
+viteConfigFile =
+  fs.readdirSync(appFolder)
+  .filter(f => f.startsWith('vite.config.'))
+  .map(f => path.resolve(appFolder, f))[0]
+
+// Create vite.config.js file if not exists
+if (!viteConfigFile) {
+  viteConfigFile = path.resolve(appFolder, 'vite.config.js')
+  fs.writeFileSync(viteConfigFile, 'export default {}')
+}
 
 // Add vendor folder and credentials.php to the .gitignore file
 const gitIgnoreFileStr = fs.existsSync(gitIgnoreFile) ? fs.readFileSync(gitIgnoreFile, { encoding: 'utf8' }) : ''  
@@ -53,21 +59,25 @@ const nextPackageFileJson = {
 fs.writeJsonSync(packageFile, nextPackageFileJson, { spaces: 2 })
 
 // Add proxy settings to the vite config file
-const viteConfigFileContent = fs.readFileSync(viteConfigFile, { encoding: 'utf8' })
-if (!viteConfigFileContent.match('proxy:')) {
-  if (!viteConfigFileContent.match('server:')) {
-    const pluginsRegex = /(( *)plugins:(\n|.)*?\[(\n|.)*?\])/
-    const proxyReplacement = `
-$1,
-$2server: {
-$2$2// eslint-disable-next-line no-useless-escape
-$2$2'^(.+)\\.(php)(?:[\\?#]|$)': 'http://localhost:8000/'
-$2}
-    `.trim()
-    const nextViteConfigFileContent = viteConfigFileContent.replace(pluginsRegex, proxyReplacement)
-    fs.writeFileSync(viteConfigFile, nextViteConfigFileContent)
-  }
+let viteConfigFileContent = fs.readFileSync(viteConfigFile, { encoding: 'utf8' })
+const regexStartOfConfig = /(export(.*)(\{))/
+const regexStartOfServer = /(server:( )*\{)/
+const regexStartOfProxy = /(proxy:( )*\{)/
+const serverStr = `
+  server: {
+  },`
+const proxyStr = `
+    proxy: {
+      // eslint-disable-next-line no-useless-escape
+      '^(.+)\\.(php)(?:[\\?#]|$)': 'http://localhost:8000/'
+    },`
+if (!viteConfigFileContent.match(regexStartOfServer)) {
+  viteConfigFileContent = viteConfigFileContent.replace(regexStartOfConfig, `$1${serverStr}`)
 }
+if (!viteConfigFileContent.match(regexStartOfProxy)) {
+  viteConfigFileContent = viteConfigFileContent.replace(regexStartOfServer, `$1${proxyStr}`)
+}
+fs.writeFileSync(viteConfigFile, viteConfigFileContent)
 
 // Log success
 console.log('✅ You can start your backend with "npm run backend"')
