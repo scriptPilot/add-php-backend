@@ -27,8 +27,8 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 
 ## How it works
 
-- ✅ no dependency will be installed
-- ✅ you have full control of all source files
+- ✅ no dependency will be added to the repository
+- ✅ you have full control of all source files for fine tuning
 
 - running "npx add-php-backend" will download the package in a cache folder
 - the package main script will **create some files** to your project folder if not exist:
