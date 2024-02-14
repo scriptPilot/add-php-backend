@@ -36,7 +36,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
   - `public/credentials.template.php` to be renamed to `credentials.php` for production
   - `composer.json` to configure Composer
   - `docker-composer.yml` to configure the container setup
-  - `schema.sql` contains the database schema
+  - `schema.sql` contains the database schema and updates to it
   - `testdata.sql` contains test data only for development
 - the package main script will **modify some files** in your project folder:
   - add a `backend` script to the `package.json` file
