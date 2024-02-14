@@ -23,7 +23,7 @@ Add PHP, Composer, MySQL and PHP CRUD API to your local development environment.
 - Run `npm run backend` to start the backend
 - Open the PHP Server at http://localhost:8000
 - Open phpMyAdmin at http://localhost:8080
-- Use the PHP CRUD api with `/api.php`
+- Use the PHP CRUD API in frontend with `/api.php`
 
 ## Development (this repository)
 
