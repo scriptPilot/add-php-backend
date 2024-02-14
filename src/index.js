@@ -16,7 +16,9 @@ const publicFolder = path.resolve(appFolder, 'public')
 
 // Define files
 const packageFile = path.resolve(appFolder, 'package.json')
-const viteConfigFile = isDevMode ? 'vite.config.js' : fs.readdirSync(appFolder).filter(f => f.startsWith('vite.config.'))[0]
+const viteConfigFile = isDevMode
+  ? path.resolve(appFolder, 'vite.config.js')
+  : fs.readdirSync(appFolder).filter(f => f.startsWith('vite.config.')).map(f => path.resolve(appFolder, f))[0]
 const gitIgnoreFile = path.resolve(appFolder, '.gitignore')
 const gitIgnoreTemplateFile = path.resolve(scriptFolder, 'templates/.gitignore')
 
@@ -52,8 +54,22 @@ const nextPackageFileJson = {
 }
 fs.writeJsonSync(packageFile, nextPackageFileJson, { spaces: 2 })
 
-// Add proxy settings to the vite.config.js file
-// TODO
+// Add proxy settings to the vite config file
+const viteConfigFileContent = fs.readFileSync(viteConfigFile, { encoding: 'utf8' })
+if (!viteConfigFileContent.match('proxy:')) {
+  if (!viteConfigFileContent.match('server:')) {
+    const pluginsRegex = /(( *)plugins:(\n|.)*?\[(\n|.)*?\])/
+    const proxyReplacement = `
+$1,
+$2server: {
+$2$2// eslint-disable-next-line no-useless-escape
+$2$2'^(.+)\\.(php)(?:[\\?#]|$)': 'http://localhost:8000/'
+$2}
+    `.trim()
+    const nextViteConfigFileContent = viteConfigFileContent.replace(pluginsRegex, proxyReplacement)
+    fs.writeFileSync(viteConfigFile, nextViteConfigFileContent)
+  }
+}
 
 // Log success
 console.log('✅ You can start your backend with "npm run backend"')
