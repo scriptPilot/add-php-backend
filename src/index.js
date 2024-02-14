@@ -12,7 +12,6 @@ const processFolder = process.cwd()
 const isDevMode = processFolder === path.resolve(scriptFolder, '..')
 const appFolder = isDevMode ? path.resolve(scriptFolder, '../temp') : processFolder
 const templateFolder = path.resolve(scriptFolder, 'templates')
-const publicFolder = path.resolve(appFolder, 'public')
 
 // Define files
 const packageFile = path.resolve(appFolder, 'package.json')
