@@ -1,4 +1,2 @@
-*
-!/src
-!/package.json
-!/README.md
+.github/
+package-lock.json
