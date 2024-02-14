@@ -14,5 +14,9 @@
     "url": "git+https://github.com/scriptpilot/add-backend.git"
   },
   "author": "scriptPilot <mail@scriptPilot.de>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "shelljs": "^0.8.5"
+  }
 }
