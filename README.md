@@ -9,7 +9,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 2. Create a new app project:
 
     ```bash
-    npm create vite@latest
+    npm create vite
     ```
 
 3. Add a PHP backend:
