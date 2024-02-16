@@ -9,7 +9,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 2. Create a new app project:
 
     ```bash
-    npm create vite@latest
+    npm create vite
     ```
 
 3. Add a PHP backend:
@@ -23,6 +23,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 - Run `npm run backend` to start the backend
 - Open the PHP server at http://localhost:8000
 - Open phpMyAdmin at http://localhost:8080
+  - Login with username `root` and password `root`
 - Use the PHP CRUD API in frontend with `/api.php`
 
 ## How it works
