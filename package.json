@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "backend": "(rm -r temp || true) && node . && cd temp && npm run backend",
+    "backend": "rm -rf temp && node . && cd temp && npm run backend",
     "preversion": "npm install && npm test"
   },
   "repository": {
