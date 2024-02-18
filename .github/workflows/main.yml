@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     needs: check-conditions
+    if: needs.check-conditions.outputs.isNewVersion == 'true'
     steps:
 
       - name: Checkout the repository
