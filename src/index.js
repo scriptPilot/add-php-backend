@@ -22,7 +22,7 @@ let viteConfigFile = null
 shell.exec(`cp -Rn "${templateFolder}/" "${appFolder}/"`)
 
 // Create package.json file if not exists
-if (!fs.existsSync(packageFile)) fs.writeFileSync(packageFile, '{}')
+if (!fs.existsSync(packageFile)) fs.writeFileSync(packageFile, '{ "scripts": { "dev": "vite" } }')
 
 // Search for vite config file
 viteConfigFile =
@@ -52,6 +52,7 @@ const nextPackageFileJson = {
   ...packageFileJson,
   scripts: {
     ...packageFileJson.scripts,
+    dev: 'npm run backend' + (packageFileJson.scripts?.dev ? ' && ' + packageFileJson.scripts.dev : ''),
     backend: '(docker stop $(docker ps -a -q) || true) && (docker rm -f $(docker ps -a -q) || true) && (docker volume rm $(docker volume ls -q) || true) && docker compose up -d --build',    
   }
 }

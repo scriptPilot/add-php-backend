@@ -40,7 +40,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
   - `schema.sql` contains the database schema and updates to it
   - `testdata.sql` contains test data only for development
 - the package main script will **modify some files** in your project folder:
-  - add a `backend` script to the `package.json` file
+  - add a `backend` script to the `package.json` file and prepend it to `dev`
   - add a proxy server config for PHP files to the Vite config file 
   - add `vendor/` and `credentials.php` to the `.gitignore` file
 
