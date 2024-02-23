@@ -24,7 +24,10 @@ $config = new Config([
     'address' => MYSQL_HOST,
     'database' => MYSQL_DATABASE,
     'username' => MYSQL_USERNAME,
-    'password' => MYSQL_PASSWORD
+    'password' => MYSQL_PASSWORD,
+
+    // Database Authentication
+    'middlewares' => 'dbAuth'
     
 ]);
 
