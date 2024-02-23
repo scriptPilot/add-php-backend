@@ -10,7 +10,7 @@ import fs from 'fs-extra'
 const scriptFolder = path.dirname(url.fileURLToPath(import.meta.url))
 const processFolder = process.cwd()
 const isDevMode = processFolder === path.resolve(scriptFolder, '..')
-const appFolder = isDevMode ? path.resolve(scriptFolder, '../temp') : processFolder
+const appFolder = isDevMode ? path.resolve(scriptFolder, '../demo') : processFolder
 const templateFolder = path.resolve(scriptFolder, 'templates')
 
 // Define files
