@@ -18,6 +18,8 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
     npx add-php-backend
     ```
 
+💡 You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or a [Local Persistent Database + MySQL Sync](https://github.com/scriptPilot/pouchdb-mysql/).
+
 ## Usage
 
 - Run `npm run backend` to start the backend
@@ -25,8 +27,6 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
 - Open phpMyAdmin at http://localhost:8080
   - Login with username `root` and password `root`
 - Use the PHP CRUD API in frontend with `/api.php`
-
-**You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or a [Local Persistent Database + MySQL Sync](https://github.com/scriptPilot/pouchdb-mysql/).**
 
 ## How it works
 
