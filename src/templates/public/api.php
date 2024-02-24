@@ -34,31 +34,10 @@ $config = new Config([
     'middlewares' => 'dbAuth,authorization',
     'dbAuth.mode' => 'optional',
     'dbAuth.registerUser' => '1',
-    'dbAuth.returnedColumns' => 'id,username',
-    'authorization.tableHandler' => function ($operation, $tableName) {        
-        // Disallow user table for delete operations
-        if ($operation === 'delete' && $tableName === 'users') {
-            return false;
-        }
-        // No other table limitation
+    'authorization.tableHandler' => function ($operation, $tableName) {    
+        if ($tableName === 'users') return false;
         return true;
-    },
-    'authorization.columnHandler' => function ($operation, $tableName, $columnName) {
-        // Hide user/password column
-        if (($operation === 'read' || $operation === 'list') && $tableName === 'users' && $columnName === 'password') {
-            return false;
-        }
-        // No other column limitation
-        return true;
-    },    
-    'authorization.recordHandler' => function ($operation, $tableName) {
-        // Limit user records to same user
-        if ($tableName === 'users' && $operation !== 'create') {
-            return 'filter=id,eq,' . USERID;
-        }
-        // No other record limitation
-        return true;
-    }    
+    }
     
 ]);
 
