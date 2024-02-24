@@ -52,7 +52,7 @@ const nextPackageFileJson = {
   ...packageFileJson,
   scripts: {
     ...packageFileJson.scripts,
-    dev: 'npm run backend' + (packageFileJson.scripts?.dev ? ' && ' + packageFileJson.scripts.dev : ''),
+    dev: (packageFileJson.scripts?.dev?.startsWith('npm run backend') ? packageFileJson.scripts.dev : 'npm run backend' + (packageFileJson.scripts?.dev ? ' && ' + packageFileJson.scripts.dev : '')),
     backend: '(docker stop $(docker ps -a -q) || true) && (docker rm -f $(docker ps -a -q) || true) && (docker volume rm $(docker volume ls -q) || true) && docker compose up -d --build',    
   }
 }
