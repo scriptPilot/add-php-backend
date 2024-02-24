@@ -26,7 +26,7 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
   - Login with username `root` and password `root`
 - Use the PHP CRUD API in frontend with `/api.php`
 
-**You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or [PouchDB + MySQL](https://github.com/scriptPilot/pouchdb-mysql/).**
+**You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or a [Local Persistent Database + MySQL Sync](https://github.com/scriptPilot/pouchdb-mysql/).**
 
 ## How it works
 
