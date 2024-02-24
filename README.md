@@ -18,6 +18,8 @@ Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](h
     npx add-php-backend
     ```
 
+You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or [PouchDB + MySQL](https://github.com/scriptPilot/pouchdb-mysql/).
+
 ## Usage
 
 - Run `npm run backend` to start the backend
