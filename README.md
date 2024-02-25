@@ -2,6 +2,8 @@
 
 Add [PHP](https://www.php.net/), [Composer](https://getcomposer.org/), [MySQL](https://mariadb.org/), [phpMyAdmin](https://www.phpmyadmin.net/) and [PHP CRUD API](https://github.com/mevdschee/php-crud-api) to your local development environment.
 
+You might be interested in a simple [JavaScript API Wrapper](https://github.com/scriptPilot/js-php-mysql-crud-api) or a [Local Persistent Database + MySQL Sync](https://github.com/scriptPilot/pouchdb-mysql/).
+
 ## Installation
 
 1. Install [Docker](https://www.docker.com/) and [Node.js](https://nodejs.org/)
