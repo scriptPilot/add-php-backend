@@ -68,7 +68,6 @@ const serverStr = `
   },`
 const proxyStr = `
     proxy: {
-      // eslint-disable-next-line no-useless-escape
       '^(.+)\\\\.php': 'http://localhost:8000/',
     },`
 if (!viteConfigFileContent.match(regexStartOfServer)) {
