@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "backend": "rm -rf demo && node . && cd demo && npm run backend",
+    "demo": "rm -rf demo-app && npm create vite demo-app -- --template react && node . && cd demo-app && npm install && npm run dev",
     "preversion": "npm install && npm test"
   },
   "repository": {

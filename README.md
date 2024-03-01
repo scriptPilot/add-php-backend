@@ -53,7 +53,16 @@ Report bugs in the [issues list](https://github.com/scriptPilot/add-php-backend/
 ## Maintainer
 
 1. Apply changes
-2. Run `npm run backend` to build the `demo` folder
+2. Run `npm run demo` to build and start the `demo-app`
 3. Commit changes with an issue (closure) reference
 4. Run `npm version patch | minor | major` and push changes
 5. Let the workflow manage the release to GitHub and NPM
+
+## Maintainer
+
+1. Apply changes to the code
+2. Run `npm run demo` to build and start the `demo-app`
+3. Apply changes to the `README.md` file and screenshots
+4. Commit changes with an issue (closure) reference
+5. Run `npm version patch | minor | major` and push changes
+6. Let the workflow manage the release to GitHub and NPM
