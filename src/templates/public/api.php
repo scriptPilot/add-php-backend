@@ -1,44 +1,58 @@
 <?php
 
-// Dependencies
+// Import dependencies
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use Tqdev\PhpCrudApi\RequestFactory;
 use Tqdev\PhpCrudApi\ResponseUtils;
 require('vendor/autoload.php');
 
-// Credentials
+// Import and define credentials
 @include('credentials.php');
 @define('MYSQL_HOST', 'mysql');
 @define('MYSQL_DATABASE', 'development');
 @define('MYSQL_USERNAME', 'root');
 @define('MYSQL_PASSWORD', 'root');
 
-// User ID
-session_start();
-define('USERID', isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 0);
-
 // Configuration
 $config = new Config([
 
-    // Debug Mode
+    // Debug mode
     'debug' => MYSQL_DATABASE === 'development',
 
-    // Database Credentials
+    // Credentials
     'address' => MYSQL_HOST,
     'database' => MYSQL_DATABASE,
     'username' => MYSQL_USERNAME,
     'password' => MYSQL_PASSWORD,
 
-    // Database Authentication
-    'middlewares' => 'dbAuth,authorization',
+    // Middlewares
+    'middlewares' => 'dbAuth,authorization,multiTenancy',
+
+    // Database authentication
     'dbAuth.mode' => 'optional',
     'dbAuth.registerUser' => '1',
+    'dbAuth.passwordLength' => '3',
+
+    // Database Authorization
     'authorization.tableHandler' => function ($operation, $tableName) {    
+
+        // No access to the users table
         if ($tableName === 'users') return false;
+
+        // Access to all other tables
         return true;
-    }
-    
+
+    },
+
+    // Multi Tenancy
+    'multiTenancy.handler' => function ($operation, $tableName) {
+
+      // For all tables, limit access to the current user
+      return ['userId' => $_SESSION['user']['id'] ?? 0];
+
+    },    
+
 ]);
 
 // Initialization
