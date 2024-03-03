@@ -24,7 +24,8 @@ You might be interested in a simple [Synchronization between local IndexedDB and
 
 - Run `npm run backend` to start the backend
 - Open the PHP server at http://localhost:8000
-  - API endpoint at http://localhost:8000/api.php [.../records/tasks](http://localhost:8000/api.php/records/tasks)
+  - API endpoint at http://localhost:8000/api.php
+    - example: http://localhost:8000/api.php/records/tasks
 - Open phpMyAdmin at http://localhost:8080
   - Login with username `root` and password `root`
 - Use the PHP CRUD API in frontend with `/api.php`
